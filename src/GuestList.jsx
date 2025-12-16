@@ -11,20 +11,52 @@ const GuestList = () => {
 
   useEffect(() => {
     const getAllGuests = async () => {
-      const response = await fetch(API + "guests");
-      const jsonResponse = await response.json();
-      const allGuests = jsonResponse.data;
-      console.log(allGuests);
-      setGuestList(allGuests);
-    }
-
+      try{
+        const response = await fetch(API + "guests");
+        const jsonResponse = await response.json();
+        const allGuests = jsonResponse.data;
+        console.log(allGuests);
+        setGuestList(allGuests);
+      }
+      catch(error) {
+        console.log(error)
+      }
+    };
     getAllGuests();
   },[]);
+
+  // useEffect (() => {
+  //   const getGuestDetails = async(id) => {
+  //     try{
+  //       const response = await fetch(API + "guests/" + id);
+  //       console.log(response);
+  //       const jsonResponse = await response.json();
+  //       console.log(jsonResponse);
+  //     }
+  //     catch(error) {
+  //       console.log(error)
+  //     }
+  //   };
+  //   getGuestDetails();
+
+  // },[setGuestDetails]);
+    
 
   return (
     <ol>
       {guestList.map((eachGuest) => {
-        return <li key={eachGuest.id}>{eachGuest.name}</li>
+        return (
+          <li
+            // onClick={() => {getGuestDetails(eachGuest.id)}}
+            key={eachGuest.id}>
+            <div>
+              <strong>{eachGuest.name}:</strong> {eachGuest.job}
+            </div>
+            <div>
+              {eachGuest.email}
+            </div>
+          </li>
+        )
       })}
     </ol>
   )
