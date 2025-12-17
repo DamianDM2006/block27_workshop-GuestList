@@ -6,7 +6,7 @@ const cohort = "2510-FTB-CT-WEB-PT/";
 const API = base + cohort;
 
 const GuestDetails = () => {
-  const { guestId } = useGuest();
+  const  { guestId, setGuestId }  = useGuest();
   const [ guestInfo, setGuestInfo ] = useState(null);
 
   useEffect (() => {
@@ -35,6 +35,7 @@ const GuestDetails = () => {
         <p>{guestInfo.bio}</p>
         <div>Email:  {guestInfo.email}</div>
         <div>Phone: {guestInfo.phone}</div>
+         <button onClick={() => setGuestId(null)}>Back</button>
 
     </>
   )
