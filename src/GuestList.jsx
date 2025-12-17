@@ -6,7 +6,7 @@ const cohort = "2510-FTB-CT-WEB-PT/";
 const API = base + cohort;
 
 const GuestList = () => {
-  const { setGuestDetails } = useGuest();
+  const { setGuestId } = useGuest();
   const [guestList, setGuestList] = useState([]);
 
   useEffect(() => {
@@ -25,21 +25,6 @@ const GuestList = () => {
     getAllGuests();
   },[]);
 
-  // useEffect (() => {
-  //   const getGuestDetails = async(id) => {
-  //     try{
-  //       const response = await fetch(API + "guests/" + id);
-  //       console.log(response);
-  //       const jsonResponse = await response.json();
-  //       console.log(jsonResponse);
-  //     }
-  //     catch(error) {
-  //       console.log(error)
-  //     }
-  //   };
-  //   getGuestDetails();
-
-  // },[setGuestDetails]);
     
 
   return (
@@ -47,7 +32,7 @@ const GuestList = () => {
       {guestList.map((eachGuest) => {
         return (
           <li
-            // onClick={() => {getGuestDetails(eachGuest.id)}}
+            onClick={() => {setGuestId(eachGuest.id)}}
             key={eachGuest.id}>
             <div>
               <strong>{eachGuest.name}:</strong> {eachGuest.job}
