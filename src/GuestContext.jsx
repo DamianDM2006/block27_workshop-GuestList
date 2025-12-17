@@ -8,15 +8,17 @@ export const GuestProvider = ({ children }) => {
   const value = {
     guestId,
     setGuestId,
-  }
+  };
 
-  return <GuestContext.Provider value={value}>{ children }</GuestContext.Provider>
-}
+  return (
+    <GuestContext.Provider value={value}>{children}</GuestContext.Provider>
+  );
+};
 
 export const useGuest = () => {
   const context = useContext(GuestContext);
-  if(!context) {
-    throw Error('useGuest must be used within a GuestProvider');
+  if (!context) {
+    throw Error("useGuest must be used within a GuestProvider");
   }
   return context;
-}
+};

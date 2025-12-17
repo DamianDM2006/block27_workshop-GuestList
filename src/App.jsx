@@ -2,16 +2,10 @@ import { useGuest } from "./GuestContext";
 import GuestList from "./GuestList";
 import GuestDetails from "./GuestDetails";
 
-
 const App = () => {
+  const { guestId } = useGuest();
 
-  return (
-    <>
-      <h1>Guest List</h1>
-      <GuestList/>
-      <GuestDetails/>
-    </>
-  );
+  return <>{guestId ? <GuestDetails /> : <GuestList />}</>;
 };
 
 export default App;
