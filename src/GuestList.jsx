@@ -15,7 +15,6 @@ const GuestList = () => {
         const response = await fetch(API + "guests");
         const jsonResponse = await response.json();
         const allGuests = jsonResponse.data;
-        console.log(allGuests);
         setGuestList(allGuests);
       }
       catch(error) {

@@ -6,29 +6,36 @@ const cohort = "2510-FTB-CT-WEB-PT/";
 const API = base + cohort;
 
 const GuestDetails = () => {
-  const { guestId, setGuestId } = useGuest();
-  console.log(guestId);
+  const { guestId } = useGuest();
+  const [ guestInfo, setGuestInfo ] = useState(null);
+
   useEffect (() => {
     const getGuestDetails = async() => {
       try{
-        console.log(`ID`, guestId);
         const response = await fetch(API + "guests/" + guestId);
-        console.log(response);
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        setGuestInfo(jsonResponse.data);
       }
       catch(error) {
-        console.log(error)
+        console.log(error);
+        return null;
       }
     };
     getGuestDetails();
 
   },[guestId]);
 
+  if (guestInfo === null) return <p>Select a guest for mor information.</p>;
+
   return (
     <>
       <h1>Guest Details</h1>
-      
+        <h2>{guestInfo.name}:  </h2>
+        <h3>Title:  {guestInfo.job}</h3>
+        <p>{guestInfo.bio}</p>
+        <div>Email:  {guestInfo.email}</div>
+        <div>Phone: {guestInfo.phone}</div>
+
     </>
   )
     

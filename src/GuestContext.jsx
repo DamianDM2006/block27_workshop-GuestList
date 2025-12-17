@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const GuestContext = createContext();
 
 export const GuestProvider = ({ children }) => {
-  const [guestId, setGuestId] = useState([]);
+  const [guestId, setGuestId] = useState(null);
 
   const value = {
     guestId,
